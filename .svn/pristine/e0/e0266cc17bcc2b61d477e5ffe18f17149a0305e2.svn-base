@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.app.account.mysql.mapper.CLUserBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.py.app.account.mysql.entities.CLUserBaseInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="national" property="national" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="id_addr" property="idAddr" jdbcType="VARCHAR" />
+    <result column="living_img" property="livingImg" jdbcType="VARCHAR" />
+    <result column="ocr_img" property="ocrImg" jdbcType="VARCHAR" />
+    <result column="front_img" property="frontImg" jdbcType="VARCHAR" />
+    <result column="back_img" property="backImg" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="marry_state" property="marryState" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_phone" property="companyPhone" jdbcType="VARCHAR" />
+    <result column="company_addr" property="companyAddr" jdbcType="VARCHAR" />
+    <result column="company_detail_addr" property="companyDetailAddr" jdbcType="VARCHAR" />
+    <result column="company_coordinate" property="companyCoordinate" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="working_years" property="workingYears" jdbcType="VARCHAR" />
+    <result column="working_img" property="workingImg" jdbcType="VARCHAR" />
+    <result column="live_time" property="liveTime" jdbcType="VARCHAR" />
+    <result column="live_addr" property="liveAddr" jdbcType="VARCHAR" />
+    <result column="live_detail_addr" property="liveDetailAddr" jdbcType="VARCHAR" />
+    <result column="live_coordinate" property="liveCoordinate" jdbcType="VARCHAR" />
+    <result column="phone_server_pwd" property="phoneServerPwd" jdbcType="VARCHAR" />
+    <result column="register_addr" property="registerAddr" jdbcType="VARCHAR" />
+    <result column="register_coordinate" property="registerCoordinate" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="black_reason" property="blackReason" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="nickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="personSign" property="personsign" jdbcType="VARCHAR" />
+    <result column="personImg" property="personimg" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, phone, real_name, age, sex, national, id_no, id_addr, living_img, ocr_img, 
+    front_img, back_img, education, marry_state, company_name, company_phone, company_addr, 
+    company_detail_addr, company_coordinate, salary, working_years, working_img, live_time, 
+    live_addr, live_detail_addr, live_coordinate, phone_server_pwd, register_addr, register_coordinate, 
+    state, black_reason, update_time, create_time, nickName, personSign, personImg, level
+  </sql>
+  <select id="findOneByPhone" resultMap="BaseResultMap" parameterType="String">
+    select
+    <include refid="Base_Column_List" />
+    from cl_user_base_info
+    where phone = #{phone,jdbcType=VARCHAR}
+    limit 1
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_user_base_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_user_base_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.py.app.account.mysql.entities.CLUserBaseInfo" >
+    insert into cl_user_base_info (id, user_id, phone, 
+      real_name, age, sex, 
+      national, id_no, id_addr, 
+      living_img, ocr_img, front_img, 
+      back_img, education, marry_state, 
+      company_name, company_phone, company_addr, 
+      company_detail_addr, company_coordinate, salary, 
+      working_years, working_img, live_time, 
+      live_addr, live_detail_addr, live_coordinate, 
+      phone_server_pwd, register_addr, register_coordinate, 
+      state, black_reason, update_time, 
+      create_time, nickName, personSign, 
+      personImg, level)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, 
+      #{national,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idAddr,jdbcType=VARCHAR}, 
+      #{livingImg,jdbcType=VARCHAR}, #{ocrImg,jdbcType=VARCHAR}, #{frontImg,jdbcType=VARCHAR}, 
+      #{backImg,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{marryState,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyPhone,jdbcType=VARCHAR}, #{companyAddr,jdbcType=VARCHAR}, 
+      #{companyDetailAddr,jdbcType=VARCHAR}, #{companyCoordinate,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, 
+      #{workingYears,jdbcType=VARCHAR}, #{workingImg,jdbcType=VARCHAR}, #{liveTime,jdbcType=VARCHAR}, 
+      #{liveAddr,jdbcType=VARCHAR}, #{liveDetailAddr,jdbcType=VARCHAR}, #{liveCoordinate,jdbcType=VARCHAR}, 
+      #{phoneServerPwd,jdbcType=VARCHAR}, #{registerAddr,jdbcType=VARCHAR}, #{registerCoordinate,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{blackReason,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{nickname,jdbcType=VARCHAR}, #{personsign,jdbcType=VARCHAR}, 
+      #{personimg,jdbcType=VARCHAR}, #{level,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.py.app.account.mysql.entities.CLUserBaseInfo" >
+    insert into cl_user_base_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="national != null" >
+        national,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="idAddr != null" >
+        id_addr,
+      </if>
+      <if test="livingImg != null" >
+        living_img,
+      </if>
+      <if test="ocrImg != null" >
+        ocr_img,
+      </if>
+      <if test="frontImg != null" >
+        front_img,
+      </if>
+      <if test="backImg != null" >
+        back_img,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="marryState != null" >
+        marry_state,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyPhone != null" >
+        company_phone,
+      </if>
+      <if test="companyAddr != null" >
+        company_addr,
+      </if>
+      <if test="companyDetailAddr != null" >
+        company_detail_addr,
+      </if>
+      <if test="companyCoordinate != null" >
+        company_coordinate,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="workingYears != null" >
+        working_years,
+      </if>
+      <if test="workingImg != null" >
+        working_img,
+      </if>
+      <if test="liveTime != null" >
+        live_time,
+      </if>
+      <if test="liveAddr != null" >
+        live_addr,
+      </if>
+      <if test="liveDetailAddr != null" >
+        live_detail_addr,
+      </if>
+      <if test="liveCoordinate != null" >
+        live_coordinate,
+      </if>
+      <if test="phoneServerPwd != null" >
+        phone_server_pwd,
+      </if>
+      <if test="registerAddr != null" >
+        register_addr,
+      </if>
+      <if test="registerCoordinate != null" >
+        register_coordinate,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="blackReason != null" >
+        black_reason,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
+      <if test="personsign != null" >
+        personSign,
+      </if>
+      <if test="personimg != null" >
+        personImg,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null" >
+        #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="livingImg != null" >
+        #{livingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ocrImg != null" >
+        #{ocrImg,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImg != null" >
+        #{frontImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backImg != null" >
+        #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marryState != null" >
+        #{marryState,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyDetailAddr != null" >
+        #{companyDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCoordinate != null" >
+        #{companyCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workingYears != null" >
+        #{workingYears,jdbcType=VARCHAR},
+      </if>
+      <if test="workingImg != null" >
+        #{workingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="liveTime != null" >
+        #{liveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddr != null" >
+        #{liveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDetailAddr != null" >
+        #{liveDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCoordinate != null" >
+        #{liveCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneServerPwd != null" >
+        #{phoneServerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddr != null" >
+        #{registerAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCoordinate != null" >
+        #{registerCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="blackReason != null" >
+        #{blackReason,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="personsign != null" >
+        #{personsign,jdbcType=VARCHAR},
+      </if>
+      <if test="personimg != null" >
+        #{personimg,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.py.app.account.mysql.entities.CLUserBaseInfo" >
+    update cl_user_base_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        national = #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null" >
+        id_addr = #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="livingImg != null" >
+        living_img = #{livingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ocrImg != null" >
+        ocr_img = #{ocrImg,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImg != null" >
+        front_img = #{frontImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backImg != null" >
+        back_img = #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marryState != null" >
+        marry_state = #{marryState,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        company_phone = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        company_addr = #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyDetailAddr != null" >
+        company_detail_addr = #{companyDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCoordinate != null" >
+        company_coordinate = #{companyCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workingYears != null" >
+        working_years = #{workingYears,jdbcType=VARCHAR},
+      </if>
+      <if test="workingImg != null" >
+        working_img = #{workingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="liveTime != null" >
+        live_time = #{liveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddr != null" >
+        live_addr = #{liveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDetailAddr != null" >
+        live_detail_addr = #{liveDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCoordinate != null" >
+        live_coordinate = #{liveCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneServerPwd != null" >
+        phone_server_pwd = #{phoneServerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddr != null" >
+        register_addr = #{registerAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCoordinate != null" >
+        register_coordinate = #{registerCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="blackReason != null" >
+        black_reason = #{blackReason,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="personsign != null" >
+        personSign = #{personsign,jdbcType=VARCHAR},
+      </if>
+      <if test="personimg != null" >
+        personImg = #{personimg,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.py.app.account.mysql.entities.CLUserBaseInfo" >
+    update cl_user_base_info
+    set user_id = #{userId,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      national = #{national,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_addr = #{idAddr,jdbcType=VARCHAR},
+      living_img = #{livingImg,jdbcType=VARCHAR},
+      ocr_img = #{ocrImg,jdbcType=VARCHAR},
+      front_img = #{frontImg,jdbcType=VARCHAR},
+      back_img = #{backImg,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      marry_state = #{marryState,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_phone = #{companyPhone,jdbcType=VARCHAR},
+      company_addr = #{companyAddr,jdbcType=VARCHAR},
+      company_detail_addr = #{companyDetailAddr,jdbcType=VARCHAR},
+      company_coordinate = #{companyCoordinate,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      working_years = #{workingYears,jdbcType=VARCHAR},
+      working_img = #{workingImg,jdbcType=VARCHAR},
+      live_time = #{liveTime,jdbcType=VARCHAR},
+      live_addr = #{liveAddr,jdbcType=VARCHAR},
+      live_detail_addr = #{liveDetailAddr,jdbcType=VARCHAR},
+      live_coordinate = #{liveCoordinate,jdbcType=VARCHAR},
+      phone_server_pwd = #{phoneServerPwd,jdbcType=VARCHAR},
+      register_addr = #{registerAddr,jdbcType=VARCHAR},
+      register_coordinate = #{registerCoordinate,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      black_reason = #{blackReason,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      nickName = #{nickname,jdbcType=VARCHAR},
+      personSign = #{personsign,jdbcType=VARCHAR},
+      personImg = #{personimg,jdbcType=VARCHAR},
+      level = #{level,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

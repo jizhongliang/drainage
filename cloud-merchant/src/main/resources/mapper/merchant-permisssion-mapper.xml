@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.merchant.dao.MerchantPermissionMapper">
+	
+	<resultMap type="com.py.merchant.dao.entify.MerchantPermissionManualDO" id="MerchantPermissionMap">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="merchant_id" property="merchantId" jdbcType="BIGINT"/>
+		<result column="permission_id" property="permissionId" jdbcType="BIGINT"/>
+		<result column="url" property="url" jdbcType="VARCHAR"/>
+		<result column="service_code" property="serviceCode" jdbcType="VARCHAR"/>
+		<result column="service_name" property="serviceName" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	
+	<insert id="insertMerchantPermission" parameterType="com.py.merchant.dao.entify.MerchantPermissionDO">
+    	insert into py_merchant_permission(merchant_id,permission_id,gmt_create,gmt_modify,crator,modifier) 
+    	values(#{merchantId},#{permissionId},#{gmtCreate},#{gmtModify},#{crator},#{modifier})
+    </insert>
+    
+    <delete id="deleteMerchantPermission" parameterType="long">
+    	delete from py_merchant_permission where id=#{id}
+    </delete>
+    
+    <delete id="deleteMerchantPermissionByMerchantId" parameterType="long">
+    	delete from py_merchant_permission where merchant_id=#{merchantId}
+    </delete>
+    
+    <delete id="deleteByMerchantIdAndPermissionId" parameterType="com.py.merchant.dao.entify.MerchantPermissionDO">
+    	delete from py_merchant_permission where merchant_id=#{merchantId} and permission_id=#{permissionId}
+    </delete>
+    
+    
+    <select id="queryPermissionByMerchantId" parameterType="long" resultMap="MerchantPermissionMap">
+    	select t1.id,t1.merchant_id,t1.permission_id,t2.url,t2.service_code,t2.service_name,t2.name
+    	from py_merchant_permission t1 inner join py_permission t2 on t2.id=t1.permission_id where t1.merchant_id=#{merchantId}
+    </select>
+    
+    
+    
+</mapper>

@@ -1,0 +1,115 @@
+
+user.driver=com.mysql.jdbc.Driver
+user.url=jdbc:mysql://47.93.114.158:3306/xmbikes?characterEncoding=UTF-8&useUnicode=true&connectTimeout=10000&\
+  socketTimeout=10000&autoReconnect=true&maxReconnects=5&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+user.username=root
+user.password=4{Q6OKMpSpdG
+user.initialSize=10
+user.maxActive=20
+user.minIdle=10
+user.maxWait=60000
+user.defaultAutoCommit=true
+user.testWhileIdle=true
+user.testOnBorrow=true
+user.testOnReturn=true
+user.timeBetweenEvictionRunsMillis=60000
+user.minEvictableIdleTimeMillis=60000
+user.validationQuery=SELECT 1
+user.removeAbandoned=true
+user.removeAbandonedTimeout=300
+user.logAbandoned=true
+
+#account dbs
+account.driver=com.mysql.jdbc.Driver
+account.url=jdbc:mysql://192.168.64.217:3306/xinqiandai?characterEncoding=UTF-8&useUnicode=true&connectTimeout=10000&\
+  socketTimeout=10000&autoReconnect=true&maxReconnects=5&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+account.username=root
+account.password=123456
+account.initialSize=10
+account.maxActive=20
+account.minIdle=10
+account.maxWait=60000
+account.defaultAutoCommit=true
+account.testWhileIdle=true
+account.testOnBorrow=true
+account.testOnReturn=true
+account.timeBetweenEvictionRunsMillis=60000
+account.minEvictableIdleTimeMillis=60000
+account.validationQuery=SELECT 1
+account.removeAbandoned=true
+account.removeAbandonedTimeout=300
+account.logAbandoned=true
+
+#borrow dbs
+borrow.driver=com.mysql.jdbc.Driver
+borrow.url=jdbc:mysql://192.168.1.102:3306/xinqiandai?characterEncoding=UTF-8&useUnicode=true&connectTimeout=10000&\
+  socketTimeout=10000&autoReconnect=true&maxReconnects=5&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+borrow.username=root
+borrow.password=123456
+borrow.initialSize=10
+borrow.maxActive=20
+borrow.minIdle=10
+borrow.maxWait=60000
+borrow.defaultAutoCommit=true
+borrow.testWhileIdle=true
+borrow.testOnBorrow=true
+borrow.testOnReturn=true
+borrow.timeBetweenEvictionRunsMillis=60000
+borrow.minEvictableIdleTimeMillis=60000
+borrow.validationQuery=SELECT 1
+borrow.removeAbandoned=true
+borrow.removeAbandonedTimeout=300
+borrow.logAbandoned=true
+
+#telecom dbs
+telecom.driver=com.mysql.jdbc.Driver
+telecom.url=jdbc:mysql://192.168.1.102:3306/xinqiandai?characterEncoding=UTF-8&useUnicode=true&connectTimeout=10000&\
+  socketTimeout=10000&autoReconnect=true&maxReconnects=5&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+telecom.username=root
+telecom.password=123456
+telecom.initialSize=10
+telecom.maxActive=20
+telecom.minIdle=10
+telecom.maxWait=60000
+telecom.defaultAutoCommit=true
+telecom.testWhileIdle=true
+telecom.testOnBorrow=true
+telecom.testOnReturn=true
+telecom.timeBetweenEvictionRunsMillis=60000
+telecom.minEvictableIdleTimeMillis=60000
+telecom.validationQuery=SELECT 1
+telecom.removeAbandoned=true
+telecom.removeAbandonedTimeout=300
+telecom.logAbandoned=true
+
+#entrance dbs
+entrance.driver=com.mysql.jdbc.Driver
+entrance.url=jdbc:mysql://192.168.1.102:3306/xinqiandai?characterEncoding=UTF-8&useUnicode=true&connectTimeout=10000&\
+  socketTimeout=10000&autoReconnect=true&maxReconnects=5&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+entrance.username=root
+entrance.password=123456
+entrance.initialSize=10
+entrance.maxActive=20
+entrance.minIdle=10
+entrance.maxWait=60000
+entrance.defaultAutoCommit=true
+entrance.testWhileIdle=true
+entrance.testOnBorrow=true
+entrance.testOnReturn=true
+entrance.timeBetweenEvictionRunsMillis=60000
+entrance.minEvictableIdleTimeMillis=60000
+entrance.validationQuery=SELECT 1
+entrance.removeAbandoned=true
+entrance.removeAbandonedTimeout=300
+entrance.logAbandoned=true
+
+#redis
+redis.ip=127.0.0.1
+redis.port=6379
+redis.pwd=root
+redis.db=15
+
+#mongodb
+mongodb.uri=127.0.0.1:27017
+
+private.key=

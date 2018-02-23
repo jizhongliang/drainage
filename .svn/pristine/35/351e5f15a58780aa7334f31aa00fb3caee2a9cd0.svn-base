@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.app.borrow.mysql.mapper.CLInterfaceAccessRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.py.app.borrow.mysql.entities.CLInterfaceAccessRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+    <result column="interface_method" property="interfaceMethod" jdbcType="VARCHAR" />
+    <result column="interface_type" property="interfaceType" jdbcType="INTEGER" />
+    <result column="access_time" property="accessTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, merchant_code, interface_method, interface_type, access_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_interface_access_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_interface_access_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceAccessRecord" >
+    insert into cl_interface_access_record (id, merchant_code, interface_method, 
+      interface_type, access_time, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{merchantCode,jdbcType=VARCHAR}, #{interfaceMethod,jdbcType=VARCHAR}, 
+      #{interfaceType,jdbcType=INTEGER}, #{accessTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceAccessRecord" >
+    insert into cl_interface_access_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code,
+      </if>
+      <if test="interfaceMethod != null" >
+        interface_method,
+      </if>
+      <if test="interfaceType != null" >
+        interface_type,
+      </if>
+      <if test="accessTime != null" >
+        access_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="merchantCode != null" >
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceMethod != null" >
+        #{interfaceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceType != null" >
+        #{interfaceType,jdbcType=INTEGER},
+      </if>
+      <if test="accessTime != null" >
+        #{accessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceAccessRecord" >
+    update cl_interface_access_record
+    <set >
+      <if test="merchantCode != null" >
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceMethod != null" >
+        interface_method = #{interfaceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceType != null" >
+        interface_type = #{interfaceType,jdbcType=INTEGER},
+      </if>
+      <if test="accessTime != null" >
+        access_time = #{accessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceAccessRecord" >
+    update cl_interface_access_record
+    set merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      interface_method = #{interfaceMethod,jdbcType=VARCHAR},
+      interface_type = #{interfaceType,jdbcType=INTEGER},
+      access_time = #{accessTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

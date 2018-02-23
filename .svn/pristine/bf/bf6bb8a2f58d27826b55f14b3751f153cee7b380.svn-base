@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.app.telecom.mysql.mapper.CLUserAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.py.app.telecom.mysql.entities.CLUserAuth" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="id_state" property="idState" jdbcType="VARCHAR" />
+    <result column="contact_state" property="contactState" jdbcType="VARCHAR" />
+    <result column="bank_card_state" property="bankCardState" jdbcType="VARCHAR" />
+    <result column="phone_state" property="phoneState" jdbcType="VARCHAR" />
+    <result column="zhima_state" property="zhimaState" jdbcType="VARCHAR" />
+    <result column="work_info_state" property="workInfoState" jdbcType="VARCHAR" />
+    <result column="other_info_state" property="otherInfoState" jdbcType="VARCHAR" />
+    <result column="acc_fund_state" property="accFundState" jdbcType="VARCHAR" />
+    <result column="regist_time_complete" property="registTimeComplete" jdbcType="VARCHAR" />
+    <result column="update_phone_state_time" property="updatePhoneStateTime" jdbcType="TIMESTAMP" />
+    <result column="update_zhima_state_time" property="updateZhimaStateTime" jdbcType="TIMESTAMP" />
+    <result column="update_bank_card_state_time" property="updateBankCardStateTime" jdbcType="TIMESTAMP" />
+    <result column="update_contact_state_time" property="updateContactStateTime" jdbcType="TIMESTAMP" />
+    <result column="update_id_state_time" property="updateIdStateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, id_state, contact_state, bank_card_state, phone_state, zhima_state, 
+    work_info_state, other_info_state, acc_fund_state, regist_time_complete, update_phone_state_time, 
+    update_zhima_state_time, update_bank_card_state_time, update_contact_state_time, 
+    update_id_state_time
+  </sql>
+
+  <select id="findOneByUid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_user_auth
+    where user_id = #{userId,jdbcType=BIGINT}
+    limit 1
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_user_auth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_user_auth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.py.app.telecom.mysql.entities.CLUserAuth" >
+    insert into cl_user_auth (id, user_id, id_state, 
+      contact_state, bank_card_state, phone_state, 
+      zhima_state, work_info_state, other_info_state, 
+      acc_fund_state, regist_time_complete, update_phone_state_time, 
+      update_zhima_state_time, update_bank_card_state_time, 
+      update_contact_state_time, update_id_state_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{idState,jdbcType=VARCHAR}, 
+      #{contactState,jdbcType=VARCHAR}, #{bankCardState,jdbcType=VARCHAR}, #{phoneState,jdbcType=VARCHAR}, 
+      #{zhimaState,jdbcType=VARCHAR}, #{workInfoState,jdbcType=VARCHAR}, #{otherInfoState,jdbcType=VARCHAR}, 
+      #{accFundState,jdbcType=VARCHAR}, #{registTimeComplete,jdbcType=VARCHAR}, #{updatePhoneStateTime,jdbcType=TIMESTAMP}, 
+      #{updateZhimaStateTime,jdbcType=TIMESTAMP}, #{updateBankCardStateTime,jdbcType=TIMESTAMP}, 
+      #{updateContactStateTime,jdbcType=TIMESTAMP}, #{updateIdStateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.py.app.telecom.mysql.entities.CLUserAuth" >
+    insert into cl_user_auth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="idState != null" >
+        id_state,
+      </if>
+      <if test="contactState != null" >
+        contact_state,
+      </if>
+      <if test="bankCardState != null" >
+        bank_card_state,
+      </if>
+      <if test="phoneState != null" >
+        phone_state,
+      </if>
+      <if test="zhimaState != null" >
+        zhima_state,
+      </if>
+      <if test="workInfoState != null" >
+        work_info_state,
+      </if>
+      <if test="otherInfoState != null" >
+        other_info_state,
+      </if>
+      <if test="accFundState != null" >
+        acc_fund_state,
+      </if>
+      <if test="registTimeComplete != null" >
+        regist_time_complete,
+      </if>
+      <if test="updatePhoneStateTime != null" >
+        update_phone_state_time,
+      </if>
+      <if test="updateZhimaStateTime != null" >
+        update_zhima_state_time,
+      </if>
+      <if test="updateBankCardStateTime != null" >
+        update_bank_card_state_time,
+      </if>
+      <if test="updateContactStateTime != null" >
+        update_contact_state_time,
+      </if>
+      <if test="updateIdStateTime != null" >
+        update_id_state_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="idState != null" >
+        #{idState,jdbcType=VARCHAR},
+      </if>
+      <if test="contactState != null" >
+        #{contactState,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardState != null" >
+        #{bankCardState,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneState != null" >
+        #{phoneState,jdbcType=VARCHAR},
+      </if>
+      <if test="zhimaState != null" >
+        #{zhimaState,jdbcType=VARCHAR},
+      </if>
+      <if test="workInfoState != null" >
+        #{workInfoState,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInfoState != null" >
+        #{otherInfoState,jdbcType=VARCHAR},
+      </if>
+      <if test="accFundState != null" >
+        #{accFundState,jdbcType=VARCHAR},
+      </if>
+      <if test="registTimeComplete != null" >
+        #{registTimeComplete,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePhoneStateTime != null" >
+        #{updatePhoneStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateZhimaStateTime != null" >
+        #{updateZhimaStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBankCardStateTime != null" >
+        #{updateBankCardStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateContactStateTime != null" >
+        #{updateContactStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateIdStateTime != null" >
+        #{updateIdStateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.py.app.telecom.mysql.entities.CLUserAuth" >
+    update cl_user_auth
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="idState != null" >
+        id_state = #{idState,jdbcType=VARCHAR},
+      </if>
+      <if test="contactState != null" >
+        contact_state = #{contactState,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardState != null" >
+        bank_card_state = #{bankCardState,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneState != null" >
+        phone_state = #{phoneState,jdbcType=VARCHAR},
+      </if>
+      <if test="zhimaState != null" >
+        zhima_state = #{zhimaState,jdbcType=VARCHAR},
+      </if>
+      <if test="workInfoState != null" >
+        work_info_state = #{workInfoState,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInfoState != null" >
+        other_info_state = #{otherInfoState,jdbcType=VARCHAR},
+      </if>
+      <if test="accFundState != null" >
+        acc_fund_state = #{accFundState,jdbcType=VARCHAR},
+      </if>
+      <if test="registTimeComplete != null" >
+        regist_time_complete = #{registTimeComplete,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePhoneStateTime != null" >
+        update_phone_state_time = #{updatePhoneStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateZhimaStateTime != null" >
+        update_zhima_state_time = #{updateZhimaStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBankCardStateTime != null" >
+        update_bank_card_state_time = #{updateBankCardStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateContactStateTime != null" >
+        update_contact_state_time = #{updateContactStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateIdStateTime != null" >
+        update_id_state_time = #{updateIdStateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.py.app.telecom.mysql.entities.CLUserAuth" >
+    update cl_user_auth
+    set user_id = #{userId,jdbcType=BIGINT},
+      id_state = #{idState,jdbcType=VARCHAR},
+      contact_state = #{contactState,jdbcType=VARCHAR},
+      bank_card_state = #{bankCardState,jdbcType=VARCHAR},
+      phone_state = #{phoneState,jdbcType=VARCHAR},
+      zhima_state = #{zhimaState,jdbcType=VARCHAR},
+      work_info_state = #{workInfoState,jdbcType=VARCHAR},
+      other_info_state = #{otherInfoState,jdbcType=VARCHAR},
+      acc_fund_state = #{accFundState,jdbcType=VARCHAR},
+      regist_time_complete = #{registTimeComplete,jdbcType=VARCHAR},
+      update_phone_state_time = #{updatePhoneStateTime,jdbcType=TIMESTAMP},
+      update_zhima_state_time = #{updateZhimaStateTime,jdbcType=TIMESTAMP},
+      update_bank_card_state_time = #{updateBankCardStateTime,jdbcType=TIMESTAMP},
+      update_contact_state_time = #{updateContactStateTime,jdbcType=TIMESTAMP},
+      update_id_state_time = #{updateIdStateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

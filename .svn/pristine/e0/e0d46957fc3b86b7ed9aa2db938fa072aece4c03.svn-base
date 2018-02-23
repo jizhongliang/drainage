@@ -1,0 +1,24 @@
+server.port=8050
+#service name
+spring.application.name=cloud-entrance-app
+
+#dbs
+entrance.driver=${entrance.driver}
+entrance.url=${entrance.url}
+entrance.username=${entrance.username}
+entrance.password=${entrance.password}
+entrance.initialSize=${entrance.initialSize}
+entrance.maxActive=${entrance.maxActive}
+entrance.minIdle=${entrance.minIdle}
+entrance.maxWait=${entrance.maxWait}
+entrance.defaultAutoCommit=${entrance.defaultAutoCommit}
+entrance.testWhileIdle=${entrance.testWhileIdle}
+entrance.testOnBorrow=${entrance.testOnBorrow}
+entrance.testOnReturn=${entrance.testOnReturn}
+entrance.timeBetweenEvictionRunsMillis=${entrance.timeBetweenEvictionRunsMillis}
+entrance.minEvictableIdleTimeMillis=${entrance.minEvictableIdleTimeMillis}
+entrance.validationQuery=${entrance.validationQuery}
+entrance.removeAbandoned=${entrance.removeAbandoned}
+entrance.removeAbandonedTimeout=${entrance.removeAbandonedTimeout}
+entrance.logAbandoned=${entrance.logAbandoned}
+        

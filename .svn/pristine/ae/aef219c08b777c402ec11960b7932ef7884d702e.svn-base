@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.app.borrow.mysql.mapper.CLBorrowRepayMapper" >
+  <resultMap id="BaseResultMap" type="com.py.app.borrow.mysql.entities.CLBorrowRepay" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="borrow_id" property="borrowId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="repay_time" property="repayTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="penalty_amout" property="penaltyAmout" jdbcType="DECIMAL" />
+    <result column="penalty_day" property="penaltyDay" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="reduction" property="reduction" jdbcType="VARCHAR" />
+    <result column="amounts" property="amounts" jdbcType="DECIMAL" />
+    <result column="reasons" property="reasons" jdbcType="VARCHAR" />
+    <result column="redate" property="redate" jdbcType="TIMESTAMP" />
+    <result column="penalty_amout2" property="penaltyAmout2" jdbcType="DECIMAL" />
+    <result column="penalty_day2" property="penaltyDay2" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, borrow_id, amount, repay_time, state, penalty_amout, penalty_day, create_time, 
+    reduction, amounts, reasons, redate, penalty_amout2, penalty_day2
+  </sql>
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from cl_borrow_repay
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_borrow_repay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_borrow_repay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.py.app.borrow.mysql.entities.CLBorrowRepay" >
+    insert into cl_borrow_repay (id, user_id, borrow_id, 
+      amount, repay_time, state, 
+      penalty_amout, penalty_day, create_time, 
+      reduction, amounts, reasons, 
+      redate, penalty_amout2, penalty_day2
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{borrowId,jdbcType=BIGINT}, 
+      #{amount,jdbcType=DECIMAL}, #{repayTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, 
+      #{penaltyAmout,jdbcType=DECIMAL}, #{penaltyDay,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{reduction,jdbcType=VARCHAR}, #{amounts,jdbcType=DECIMAL}, #{reasons,jdbcType=VARCHAR}, 
+      #{redate,jdbcType=TIMESTAMP}, #{penaltyAmout2,jdbcType=DECIMAL}, #{penaltyDay2,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.py.app.borrow.mysql.entities.CLBorrowRepay" >
+    insert into cl_borrow_repay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="borrowId != null" >
+        borrow_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="repayTime != null" >
+        repay_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="penaltyAmout != null" >
+        penalty_amout,
+      </if>
+      <if test="penaltyDay != null" >
+        penalty_day,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="reduction != null" >
+        reduction,
+      </if>
+      <if test="amounts != null" >
+        amounts,
+      </if>
+      <if test="reasons != null" >
+        reasons,
+      </if>
+      <if test="redate != null" >
+        redate,
+      </if>
+      <if test="penaltyAmout2 != null" >
+        penalty_amout2,
+      </if>
+      <if test="penaltyDay2 != null" >
+        penalty_day2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="borrowId != null" >
+        #{borrowId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="repayTime != null" >
+        #{repayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyAmout != null" >
+        #{penaltyAmout,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyDay != null" >
+        #{penaltyDay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reduction != null" >
+        #{reduction,jdbcType=VARCHAR},
+      </if>
+      <if test="amounts != null" >
+        #{amounts,jdbcType=DECIMAL},
+      </if>
+      <if test="reasons != null" >
+        #{reasons,jdbcType=VARCHAR},
+      </if>
+      <if test="redate != null" >
+        #{redate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="penaltyAmout2 != null" >
+        #{penaltyAmout2,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyDay2 != null" >
+        #{penaltyDay2,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.py.app.borrow.mysql.entities.CLBorrowRepay" >
+    update cl_borrow_repay
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="borrowId != null" >
+        borrow_id = #{borrowId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="repayTime != null" >
+        repay_time = #{repayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyAmout != null" >
+        penalty_amout = #{penaltyAmout,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyDay != null" >
+        penalty_day = #{penaltyDay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reduction != null" >
+        reduction = #{reduction,jdbcType=VARCHAR},
+      </if>
+      <if test="amounts != null" >
+        amounts = #{amounts,jdbcType=DECIMAL},
+      </if>
+      <if test="reasons != null" >
+        reasons = #{reasons,jdbcType=VARCHAR},
+      </if>
+      <if test="redate != null" >
+        redate = #{redate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="penaltyAmout2 != null" >
+        penalty_amout2 = #{penaltyAmout2,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyDay2 != null" >
+        penalty_day2 = #{penaltyDay2,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.py.app.borrow.mysql.entities.CLBorrowRepay" >
+    update cl_borrow_repay
+    set user_id = #{userId,jdbcType=BIGINT},
+      borrow_id = #{borrowId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      repay_time = #{repayTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=VARCHAR},
+      penalty_amout = #{penaltyAmout,jdbcType=DECIMAL},
+      penalty_day = #{penaltyDay,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      reduction = #{reduction,jdbcType=VARCHAR},
+      amounts = #{amounts,jdbcType=DECIMAL},
+      reasons = #{reasons,jdbcType=VARCHAR},
+      redate = #{redate,jdbcType=TIMESTAMP},
+      penalty_amout2 = #{penaltyAmout2,jdbcType=DECIMAL},
+      penalty_day2 = #{penaltyDay2,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

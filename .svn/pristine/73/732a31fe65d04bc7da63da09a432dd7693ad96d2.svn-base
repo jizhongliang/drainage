@@ -1,0 +1,30 @@
+server.port=8020
+
+#service discovery url
+eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka
+#service name
+spring.application.name=cloud-account-app
+
+#dbs
+#dbs
+account.driver=${account.driver}
+account.url=${account.url}
+account.username=${account.username}
+account.password=${account.password}
+account.initialSize=${account.initialSize}
+account.maxActive=${account.maxActive}
+account.minIdle=${account.minIdle}
+account.maxWait=${account.maxWait}
+account.defaultAutoCommit=${account.defaultAutoCommit}
+account.testWhileIdle=${account.testWhileIdle}
+account.testOnBorrow=${account.testOnBorrow}
+account.testOnReturn=${account.testOnReturn}
+account.timeBetweenEvictionRunsMillis=${account.timeBetweenEvictionRunsMillis}
+account.minEvictableIdleTimeMillis=${account.minEvictableIdleTimeMillis}
+account.validationQuery=${account.validationQuery}
+account.removeAbandoned=${account.removeAbandoned}
+account.removeAbandonedTimeout=${account.removeAbandonedTimeout}
+account.logAbandoned=${account.logAbandoned}
+
+#my_private_key
+private.key=${private.key}

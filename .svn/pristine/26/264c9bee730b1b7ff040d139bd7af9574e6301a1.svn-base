@@ -1,0 +1,14 @@
+server.port=8361
+#service discovery url
+eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka
+#service name
+spring.application.name=cloud-intergration
+
+#redis
+redis.ip=${redis.ip}
+redis.port=${redis.port}
+redis.pwd=${redis.pwd}
+redis.db=${redis.db}
+
+#mongodb
+mongodb.uri=${mongodb.uri}

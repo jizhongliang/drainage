@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_HOME" value="/u01/srv/share/logs/drainage/account/${server.port}" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{30}.%M[%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="COMMON"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/drainage.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- “fileNamePattern”选项以“.gz”或“.zip”结尾，就表示需要压缩 -->
+            <FileNamePattern>${LOG_HOME}/drainage-%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>7</maxHistory>
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+            <!--<maxFileSize>1GB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{30}.%M[%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/error-%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>7</maxHistory>
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+            <!--<maxFileSize>1GB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{30}.%M[%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="SYSTEM"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/system.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/system-%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{30}.%M[%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="DAO"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- “fileNamePattern”选项以“.gz”或“.zip”结尾，就表示需要压缩 -->
+            <FileNamePattern>${LOG_HOME}/sql-%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>3</maxHistory>
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+            <!--<maxFileSize>1GB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{30}.%M[%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="service"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- “fileNamePattern”选项以“.gz”或“.zip”结尾，就表示需要压缩 -->
+            <FileNamePattern>${LOG_HOME}/service-%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>7</maxHistory>
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+            <!--<maxFileSize>1GB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{30}.%M[%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- 系统相关 start -->
+    <logger name="com.py.app.account.main" level="INFO" additivity="false">
+        <appender-ref ref="SYSTEM" />
+        <appender-ref ref="ERROR" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <!-- 系统相关 end -->
+
+    <!-- 业务日志 start -->
+    <logger name="com.py.app.account.controllers" level="INFO" additivity="false" >
+        <appender-ref ref="STDOUT" /><!-- &lt;!&ndash; &lt;!&ndash; 标准输出，线上不需要 &ndash;&gt;&ndash;&gt;-->
+        <appender-ref ref="COMMON" />
+        <appender-ref ref="ERROR" />
+    </logger>
+    <!--&lt;!&ndash; service日志&ndash;&gt;
+    <logger name="com.py.app.account.controllers" level="INFO" additivity="false" >
+        <appender-ref ref="service" />
+        <appender-ref ref="ERROR" />
+    </logger>-->
+
+    <!-- dao层 -->
+    <logger name="com.py.app.account.mysql.mapper" level="DEBUG" additivity="false" >
+        <appender-ref ref="DAO" />
+        <appender-ref ref="ERROR" />
+        <appender-ref ref="COMMON" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SYSTEM" />
+        <appender-ref ref="ERROR" />
+    </root>
+</configuration>

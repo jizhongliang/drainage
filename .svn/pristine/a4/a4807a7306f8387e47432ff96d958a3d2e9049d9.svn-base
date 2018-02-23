@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.app.account.mysql.mapper.CLBankCardMapper" >
+  <resultMap id="BaseResultMap" type="com.py.app.account.mysql.entities.CLBankCard" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="agree_no" property="agreeNo" jdbcType="VARCHAR" />
+    <result column="bind_time" property="bindTime" jdbcType="TIMESTAMP" />
+    <result column="baofoo_bind_time" property="baofooBindTime" jdbcType="TIMESTAMP" />
+    <result column="baofoo_bind_id" property="baofooBindId" jdbcType="VARCHAR" />
+    <result column="baofoo_type" property="baofooType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, bank, card_no, phone, agree_no, bind_time, baofoo_bind_time, baofoo_bind_id, 
+    baofoo_type
+  </sql>
+
+    <select id="findOneByUid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from cl_bank_card
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_bank_card
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_bank_card
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.py.app.account.mysql.entities.CLBankCard" >
+    insert into cl_bank_card (id, user_id, bank, 
+      card_no, phone, agree_no, 
+      bind_time, baofoo_bind_time, baofoo_bind_id, 
+      baofoo_type)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{bank,jdbcType=VARCHAR}, 
+      #{cardNo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{agreeNo,jdbcType=VARCHAR}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{baofooBindTime,jdbcType=TIMESTAMP}, #{baofooBindId,jdbcType=VARCHAR}, 
+      #{baofooType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.py.app.account.mysql.entities.CLBankCard" >
+    insert into cl_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="cardNo != null" >
+        card_no,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="agreeNo != null" >
+        agree_no,
+      </if>
+      <if test="bindTime != null" >
+        bind_time,
+      </if>
+      <if test="baofooBindTime != null" >
+        baofoo_bind_time,
+      </if>
+      <if test="baofooBindId != null" >
+        baofoo_bind_id,
+      </if>
+      <if test="baofooType != null" >
+        baofoo_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeNo != null" >
+        #{agreeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null" >
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baofooBindTime != null" >
+        #{baofooBindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baofooBindId != null" >
+        #{baofooBindId,jdbcType=VARCHAR},
+      </if>
+      <if test="baofooType != null" >
+        #{baofooType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.py.app.account.mysql.entities.CLBankCard" >
+    update cl_bank_card
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeNo != null" >
+        agree_no = #{agreeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null" >
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baofooBindTime != null" >
+        baofoo_bind_time = #{baofooBindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baofooBindId != null" >
+        baofoo_bind_id = #{baofooBindId,jdbcType=VARCHAR},
+      </if>
+      <if test="baofooType != null" >
+        baofoo_type = #{baofooType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.py.app.account.mysql.entities.CLBankCard" >
+    update cl_bank_card
+    set user_id = #{userId,jdbcType=BIGINT},
+      bank = #{bank,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      agree_no = #{agreeNo,jdbcType=VARCHAR},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      baofoo_bind_time = #{baofooBindTime,jdbcType=TIMESTAMP},
+      baofoo_bind_id = #{baofooBindId,jdbcType=VARCHAR},
+      baofoo_type = #{baofooType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

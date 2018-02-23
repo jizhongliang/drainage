@@ -1,0 +1,30 @@
+server.port=8030
+
+#service discovery url
+eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka
+#service name
+spring.application.name=cloud-borrow-app
+
+#dbs
+#dbs
+borrow.driver=${borrow.driver}
+borrow.url=${borrow.url}
+borrow.username=${borrow.username}
+borrow.password=${borrow.password}
+borrow.initialSize=${borrow.initialSize}
+borrow.maxActive=${borrow.maxActive}
+borrow.minIdle=${borrow.minIdle}
+borrow.maxWait=${borrow.maxWait}
+borrow.defaultAutoCommit=${borrow.defaultAutoCommit}
+borrow.testWhileIdle=${borrow.testWhileIdle}
+borrow.testOnBorrow=${borrow.testOnBorrow}
+borrow.testOnReturn=${borrow.testOnReturn}
+borrow.timeBetweenEvictionRunsMillis=${borrow.timeBetweenEvictionRunsMillis}
+borrow.minEvictableIdleTimeMillis=${borrow.minEvictableIdleTimeMillis}
+borrow.validationQuery=${borrow.validationQuery}
+borrow.removeAbandoned=${borrow.removeAbandoned}
+borrow.removeAbandonedTimeout=${borrow.removeAbandonedTimeout}
+borrow.logAbandoned=${borrow.logAbandoned}
+
+#my_private_key
+private.key=${private.key}

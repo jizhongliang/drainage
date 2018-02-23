@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.merchant.dao.MerchantMapper">
+
+
+	<resultMap type="com.py.merchant.dao.entify.MerchantDO" id="MerchantMap">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="security_code" property="securityCode" jdbcType="VARCHAR"/>
+		<result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR"/>
+		<result column="gmt_modify" property="gmtModify" jdbcType="VARCHAR"/>
+		<result column="crator" property="crator" jdbcType="VARCHAR"/>
+		<result column="modifier" property="modifier" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="public_key" property="publicKey" jdbcType="VARCHAR"/>
+		<result column="include_ip" property="includeIp" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="queryById" resultMap="MerchantMap" parameterType="long">
+        select id,name,security_code,gmt_create,gmt_modify,crator,modifier,status,public_key,include_ip from py_merchant where id = #{id,jdbcType=BIGINT}
+    </select>
+    
+    
+    <select id="queryByCode" resultMap="MerchantMap" parameterType="java.lang.String">
+        select id,name,security_code,gmt_create,gmt_modify,crator,modifier,status,public_key,include_ip from py_merchant where security_code = #{securityCode}
+    </select>
+    
+    
+    <insert id="insertMerchant" parameterType="com.py.merchant.dao.entify.MerchantDO">
+    	insert into py_merchant(name,security_code,gmt_create,gmt_modify,crator,modifier,status,public_key,include_ip) 
+    	values(#{name},#{securityCode},#{gmtCreate},#{gmtModify},#{crator},#{modifier},#{status},#{publicKey},#{includeIp})
+    </insert>
+    
+    
+    <delete id="deleteMerchant" parameterType="long">
+    	delete from py_merchant where id=#{id}
+    </delete>
+    
+    <update id="updateMerchant" parameterType="com.py.merchant.dao.entify.MerchantDO">
+    	update py_merchant
+    	<set>
+    		<if test="name!=null">name=#{name},</if>
+    		<if test="securityCode!=null">security_code=#{securityCode},</if>
+    		<if test="status!=null">status=#{status},</if>
+    		<if test="publicKey!=null">public_key=#{publicKey},</if>
+    		<if test="includeIp!=null">include_ip=#{includeIp}</if>
+    		gmt_modify=#{gmtModify},modifier=#{modifier}
+    	</set>
+    	where id=#{id}
+    </update>
+    
+    
+    <select id="pageQuery" parameterType="com.py.merchant.dao.requestbo.MerchantQueryBO" resultMap="MerchantMap">
+    	 select id,name,security_code,gmt_create,gmt_modify,crator,modifier,status,public_key,include_ip from py_merchant 
+    	 <where>
+    		<if test="securityCode!=null"> and security_code=#{securityCode}</if>
+    	 	<if test="name!=null"> and name like concat('%',#{name},'%')</if>
+    	 	<if test="status!=null"> and status=#{status}</if>
+    	 </where>
+    	 limit #{start},#{size}
+    </select>
+    
+    <select id="pageQueryCount" parameterType="com.py.merchant.dao.requestbo.MerchantQueryBO" resultType="long">
+    	 select count(id) from py_merchant 
+    	 <where>
+    		<if test="securityCode!=null"> and security_code=#{securityCode}</if>
+    	 	<if test="name!=null"> and name like concat('%',#{name},'%')</if>
+    	 	<if test="status!=null"> and status=#{status}</if>
+    	 </where>
+    </select>
+    
+     
+</mapper>

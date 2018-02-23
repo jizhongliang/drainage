@@ -1,0 +1,9 @@
+spring.application.name=cloud-zuul
+server.port=9002
+eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka/
+#zuul.routes.api-b.path=/hello/**
+#zuul.routes.api-b.serviceId=springCloudEurekaServer
+#路由过滤
+zuul.routes.api-b.path=/user/**
+#指向服务提供者 名字一般不变，只改端口
+zuul.routes.api-b.serviceId=cloud-user-app

@@ -1,0 +1,31 @@
+spring.profiles.active=dev
+
+spring.application.name=cloud-zuul
+server.port=9092
+eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka/
+#zuul.routes.api-b.path=/hello/**
+#zuul.routes.api-b.serviceId=springCloudEurekaServer
+#路由过滤
+zuul.routes.api-b.path=/user/**
+#指向服务提供者 名字一般不变，只改端口
+zuul.routes.api-b.serviceId=cloud-user-app
+
+#路由过滤
+zuul.routes.api-a.path=/account/**
+#指向服务提供者 名字一般不变，只改端口
+zuul.routes.api-a.serviceId=cloud-account-app
+
+#路由过滤
+zuul.routes.api-c.path=/borrow/**
+#指向服务提供者 名字一般不变，只改端口
+zuul.routes.api-c.serviceId=cloud-borrow-app
+
+#路由过滤
+zuul.routes.api-d.path=/telecom/**
+#指向服务提供者 名字一般不变，只改端口
+zuul.routes.api-d.serviceId=cloud-telecom-app
+
+#注册服务默认心跳时间,默认是30秒，也就是每30秒会向Eureka Server发起Renew操作。
+eureka.instance.leaseRenewalIntervalInSeconds=10
+#服务失效时间。默认是90秒，也就是如果Eureka Server在90秒内没有接收到来自ServiceProvider的Renew操作，就会把Service Provider剔除。
+eureka.instance.leaseExpirationDurationInSeconds=20

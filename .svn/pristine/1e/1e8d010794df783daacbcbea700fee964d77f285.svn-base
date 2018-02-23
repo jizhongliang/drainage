@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.merchant.dao.PermissionMapper">
+	<resultMap type="com.py.merchant.dao.entify.PermissionDO" id="PermissionMap">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="service_name" property="serviceName" jdbcType="VARCHAR"/>
+		<result column="service_code" property="serviceCode" jdbcType="VARCHAR"/>
+		<result column="url" property="url" jdbcType="VARCHAR"/>
+		<result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR"/>
+		<result column="gmt_modify" property="gmtModify" jdbcType="VARCHAR"/>
+		<result column="crator" property="crator" jdbcType="VARCHAR"/>
+		<result column="modifier" property="modifier" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap type="com.py.merchant.dao.entify.PermissionDO" id="PermissionServiceMap">
+		<result column="service_name" property="serviceName" jdbcType="VARCHAR"/>
+		<result column="service_code" property="serviceCode" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="queryById" resultMap="PermissionMap" parameterType="long">
+        select id,name,url,gmt_create,gmt_modify,crator,modifier,service_name,service_code from py_permission where id = #{id,jdbcType=BIGINT}
+    </select>
+    
+    <insert id="insertPermission" parameterType="com.py.merchant.dao.entify.PermissionDO">
+    	insert into py_permission(name,url,gmt_create,gmt_modify,crator,modifier,service_name,service_code) 
+    	values(#{name},#{url},#{gmtCreate},#{gmtModify},#{crator},#{modifier},#{serviceName},#{serviceCode})
+    </insert>
+    
+    
+    
+    <update id="updatePermission" parameterType="com.py.merchant.dao.entify.PermissionDO">
+    	update py_permission
+    	<set>
+    		<if test="name!=null">name=#{name},</if>
+    		<if test="url!=null">url=#{url},</if>
+    		<if test="serviceName!=null">service_name=#{serviceName},</if>
+    		<if test="serviceCode!=null">service_code=#{serviceCode},</if>
+    		gmt_modify=#{gmtModify},modifier=#{modifier}
+    	</set>
+    	where id=#{id}
+    </update>
+    
+    
+    <select id="pageQuery" parameterType="com.py.merchant.dao.requestbo.PermissionQueryBO" resultMap="PermissionMap">
+    	select id,name,url,gmt_create,gmt_modify,crator,modifier,service_name,service_code from py_permission 
+    	 <where>
+    	 	<if test="serviceCode!=null and serviceCode!=''"> and service_code=#{serviceCode}</if>
+    		<if test="serviceName!=null and serviceName!=''"> and service_name=#{serviceName}</if>
+    	 	<if test="name!=null and name!=''"> and name like concat('%',#{name},'%')</if>
+    	 </where>
+    	 limit #{start},#{size}
+    </select>
+    
+    
+    <select id="pageQueryCount" parameterType="com.py.merchant.dao.requestbo.PermissionQueryBO" resultType="long">
+    	select count(id) from py_permission 
+    	 <where>
+    		<if test="serviceCode!=null and serviceCode!=''"> and service_code=#{serviceCode}</if>
+    		<if test="serviceName!=null and serviceName!=''"> and service_name=#{serviceName}</if>
+    	 	<if test="name!=null and name!=''"> and name like concat('%',#{name},'%')</if>
+    	 </where>
+    </select>
+    
+    <!-- 查询商户未获得的权限 -->
+    <select id="queryMerchantNoPermission" parameterType="long" resultMap="PermissionMap">
+    	select id,name,url,gmt_create,gmt_modify,crator,modifier,service_name,service_code from py_permission 
+    	where id not in (select permission_id from py_merchant_permission where merchant_id=#{merchantId})
+    </select>
+	
+	<select id="selectAllService" resultMap="PermissionServiceMap">
+		select service_name,service_code from py_permission group by service_code
+	</select>
+	
+	<delete id="deleteById" parameterType="long">
+		delete from py_permission where id=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.app.borrow.mysql.mapper.CLInterfaceMerchantSummaryMapper" >
+  <resultMap id="BaseResultMap" type="com.py.app.borrow.mysql.entities.CLInterfaceMerchantSummary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+    <result column="interface_type" property="interfaceType" jdbcType="INTEGER" />
+    <result column="total_counts" property="totalCounts" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, merchant_code, interface_type, total_counts, create_time, update_time
+  </sql>
+  <select id="findOneByMerchantAndType" parameterType="com.py.app.borrow.bo.MerchantSummaryRequestBo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cl_interface_merchant_summary
+    where merchant_code = #{merchantCode}
+    AND interface_type = #{type}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_interface_merchant_summary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cl_interface_merchant_summary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceMerchantSummary" >
+    insert into cl_interface_merchant_summary (id, merchant_code, interface_type, 
+      total_counts, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{merchantCode,jdbcType=VARCHAR}, #{interfaceType,jdbcType=INTEGER}, 
+      #{totalCounts,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceMerchantSummary" >
+    insert into cl_interface_merchant_summary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code,
+      </if>
+      <if test="interfaceType != null" >
+        interface_type,
+      </if>
+      <if test="totalCounts != null" >
+        total_counts,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantCode != null" >
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceType != null" >
+        #{interfaceType,jdbcType=INTEGER},
+      </if>
+      <if test="totalCounts != null" >
+        #{totalCounts,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceMerchantSummary" >
+    update cl_interface_merchant_summary
+    <set >
+      <if test="merchantCode != null" >
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceType != null" >
+        interface_type = #{interfaceType,jdbcType=INTEGER},
+      </if>
+      <if test="totalCounts != null" >
+        total_counts = #{totalCounts,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.py.app.borrow.mysql.entities.CLInterfaceMerchantSummary" >
+    update cl_interface_merchant_summary
+    set merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      interface_type = #{interfaceType,jdbcType=INTEGER},
+      total_counts = #{totalCounts,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
